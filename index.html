@@ -16,12 +16,52 @@
             <div id="clock"></div>
         </div>
         <div class="main">
-           
+           <div class="widget">
+            <h3>Widget 01</h3>
+            <div class="notepad">
+                <textarea name="message" id="note-area" rows = "20" cols="40"></textarea>
+            </div>
+            <button id="saveNoteBtn">Save</button>
+           </div>
+           <div class="widget">
+            <h3>Widget 02</h3>
+            <iframe width="95%" height="300vh" src="https://www.youtube.com/embed/u6cfsfRd31Y?si=IWhZ11ED9lKpo1Yk" title="YouTube video player" frameborder="2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+           </div>
+           <div class="widget">
+            <h3>Widget 03</h3>
+           </div>
         </div>
     </div>
 </body>
 
 <script>
+    try {
+        var loadNotes = localStorage.getItem("notes");
+    }
+    catch(err){
+        var loadNotes = "Enter your nores here and click 'Save'";
+    }
+
+    $('#note-area').val(loadNotes);
+    var sp = "/";
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+
+    if (dd<10){
+        dd='0'+dd;
+    }
+    if(mm<10){
+        mm='0'+mm;
+    }
+
+    $('#date').html(mm+sp+dd+sp+yyyy);
+
+    $("#saveNoteBtn").click(function(){
+        var currentNotes = $("#note-area").val();
+        localStorage.setItem("notes", currentNotes);
+    })
 
 </script>
 </html>
